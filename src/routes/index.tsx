@@ -1,8 +1,13 @@
 import * as React from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import { Navigate, createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
-  component: HomeComponent,
+  beforeLoad: async () => {
+    throw redirect({
+      to: '/reported-sessions/all'
+    })
+  },
+  component: HomeComponent
 })
 
 function HomeComponent() {

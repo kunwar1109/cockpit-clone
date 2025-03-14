@@ -11,27 +11,27 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as DashboardImport } from './routes/dashboard'
-import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as ReportedSessionsAllImport } from './routes/reported-sessions/all'
+import { Route as InvoicesAllImport } from './routes/invoices/all'
 
 // Create/Update Routes
-
-const DashboardRoute = DashboardImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReportedSessionsAllRoute = ReportedSessionsAllImport.update({
+  id: '/reported-sessions/all',
+  path: '/reported-sessions/all',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InvoicesAllRoute = InvoicesAllImport.update({
+  id: '/invoices/all',
+  path: '/invoices/all',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,18 +46,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
+    '/invoices/all': {
+      id: '/invoices/all'
+      path: '/invoices/all'
+      fullPath: '/invoices/all'
+      preLoaderRoute: typeof InvoicesAllImport
       parentRoute: typeof rootRoute
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardImport
+    '/reported-sessions/all': {
+      id: '/reported-sessions/all'
+      path: '/reported-sessions/all'
+      fullPath: '/reported-sessions/all'
+      preLoaderRoute: typeof ReportedSessionsAllImport
       parentRoute: typeof rootRoute
     }
   }
@@ -67,42 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/dashboard': typeof DashboardRoute
+  '/invoices/all': typeof InvoicesAllRoute
+  '/reported-sessions/all': typeof ReportedSessionsAllRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/dashboard': typeof DashboardRoute
+  '/invoices/all': typeof InvoicesAllRoute
+  '/reported-sessions/all': typeof ReportedSessionsAllRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/dashboard': typeof DashboardRoute
+  '/invoices/all': typeof InvoicesAllRoute
+  '/reported-sessions/all': typeof ReportedSessionsAllRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/dashboard'
+  fullPaths: '/' | '/invoices/all' | '/reported-sessions/all'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/dashboard'
-  id: '__root__' | '/' | '/about' | '/dashboard'
+  to: '/' | '/invoices/all' | '/reported-sessions/all'
+  id: '__root__' | '/' | '/invoices/all' | '/reported-sessions/all'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  DashboardRoute: typeof DashboardRoute
+  InvoicesAllRoute: typeof InvoicesAllRoute
+  ReportedSessionsAllRoute: typeof ReportedSessionsAllRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  DashboardRoute: DashboardRoute,
+  InvoicesAllRoute: InvoicesAllRoute,
+  ReportedSessionsAllRoute: ReportedSessionsAllRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about",
-        "/dashboard"
+        "/invoices/all",
+        "/reported-sessions/all"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/about": {
-      "filePath": "about.tsx"
+    "/invoices/all": {
+      "filePath": "invoices/all.tsx"
     },
-    "/dashboard": {
-      "filePath": "dashboard.tsx"
+    "/reported-sessions/all": {
+      "filePath": "reported-sessions/all.tsx"
     }
   }
 }
